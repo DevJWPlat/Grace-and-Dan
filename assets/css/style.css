@@ -621,9 +621,16 @@ footer .image {
   width: 20%;
   margin: 0 auto 50px auto;
 }
+@media (max-width: 800px) {
+  footer .image {
+    width: 35%;
+    position: relative;
+    left: 20px;
+  }
+}
 @media (max-width: 600px) {
   footer .image {
-    width: 30%;
+    width: 45%;
   }
 }
 footer .image img {
@@ -634,12 +641,21 @@ footer .image img {
   position: relative;
   margin-top: 50px;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 @media (max-width: 1000px) {
   .bottom-wrapper {
     justify-content: center;
     margin-top: 100px;
+  }
+}
+.bottom-wrapper .me-small {
+  display: none;
+}
+@media (max-width: 800px) {
+  .bottom-wrapper .me-small {
+    display: block;
+    margin-bottom: 50px;
   }
 }
 .bottom-wrapper .me-wrapper {
@@ -658,6 +674,11 @@ footer .image img {
 .bottom-wrapper .me-wrapper .wrapper {
   width: -moz-max-content;
   width: max-content;
+}
+@media (max-width: 800px) {
+  .bottom-wrapper .me-wrapper {
+    display: none;
+  }
 }
 .bottom-wrapper .me-wrapper:active {
   box-shadow: inset 0 0 0 4px rgba(4, 59, 63, 0.4196078431);
@@ -689,5 +710,59 @@ footer .image img {
   100% {
     opacity: 0;
     transform: translate(0);
+  }
+}
+
+.countdown {
+  display: flex;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.countdown > div {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
+  box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.25);
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+}
+
+.number {
+  font-weight: 500;
+  font-size: 44px;
+  color: #CAA78C;
+}
+
+div span:last-of-type {
+  font-size: 12px;
+}
+
+@media screen and (max-width: 600px) {
+  .countdown {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 30px 0;
+  }
+  .countdown > div {
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 20px;
+  }
+  div span:last-of-type {
+    font-size: 24px;
+    text-transform: uppercase;
+  }
+  .number {
+    font-size: 34px;
+    padding-right: 30px;
   }
 }/*# sourceMappingURL=style.css.map */
