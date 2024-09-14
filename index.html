@@ -73,7 +73,7 @@
         </div>
         <div class="text">
             <h2 class="title">What are the timings for the day?</h2>
-            <p>For those of you who are invited to the ceremony, please at 11am to give you all plenty of time before the ceremony at 12pm. This will be followed by a cocktail hour then food will be served!
+            <p>For those of you who are invited to the ceremony, please arrive from 11am to give you all plenty of time before the ceremony at 12pm. This will be followed by a cocktail hour then food will be served!
                 <br><br>
                 And if you are joining us in the PM for the party please arrive after 6:30pm with your dancing shoes at the ready.
             </p>
@@ -143,31 +143,31 @@
         <div class="text">
             <h2 class="title">RSVP</h2>
             <p>Please submit your RSVP responses by July 31st 2025</p>
-            <p>Please forward your responses to the wedding to the following email: <a href="mailto:danandgracepuis@hotmail.com">danandgracepuis@hotmail.com</a></p>
+            <p>Please forward your responses to the wedding to the following email: <a href="mailto:Danandgracedepuis@hotmail.com">Danandgracedepuis@hotmail.com</a></p>
             <!-- insert countdown here -->
-            <div class="countdown">
+            <div class="countdown" id="countdown">
                 <div>
-                  <span class="number months"></span>
+                  <span class="number months" id="months"></span>
                   <span>Months</span>
                 </div>
                  <div>
-                  <span class="number days"></span>
+                  <span class="number days" id="days"></span>
                   <span>Days</span>
                 </div>
                  <div>
-                  <span class="number hours"></span>
+                  <span class="number hours" id="hours"></span>
                   <span>Hours</span>
                 </div>
                  <div>
-                  <span class="number minutes"></span>
+                  <span class="number minutes" id="minutes"></span>
                   <span>Minutes</span>
                 </div>
                  <div>
-                  <span class="number seconds"></span>
+                  <span class="number seconds" id="seconds"></span>
                   <span>Seconds</span>
                 </div>
               </div>
-            <a href="mailto:danandgracepuis@hotmail.com" class="main-btn">Email us</a>
+            <a href="mailto:Danandgracedepuis@hotmail.com" class="main-btn">Email us</a>
         </div>
     </div>
     <!-- rsvp -->
@@ -245,6 +245,11 @@
         </a>
         <a href="https://jonnywdev.github.io/Jonny_Whittle/index.html" target="_blank" class="me-small">Website designed & built by Jonny Whittle</a>
     </div>
+    <div class="test" style="margin: 50px 0; display: flex; gap: 50px;">
+            <a href="test-1.html" class="main-btn">1</a>
+            <a href="test-2.html" class="main-btn">2</a>
+            <a href="" class="main-btn"></a>
+    </div>
     <!-- footer -->
     <!-- js -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
@@ -312,30 +317,32 @@
                 $(".mobile-menu-btn").toggleClass("open");
             })
 
-            const newDate = new Date('07-31-2025 12:00:00').getTime()
-            const countdown = setInterval(() =>{
-            
-            const date = new Date().getTime()
-            const diff = newDate - date
+             // Set the date to countdown to
+             var countdownDate = new Date("2025-31-07T00:00:00").getTime();
 
-            const month =  Math.floor((diff % (1000 * 60 * 60 * 24 * (365.25 / 12) * 365)) / (1000 * 60 * 60 * 24 * (365.25 / 12)))
-            const days = Math.floor(diff % (1000 * 60 * 60 * 24 * (365.25 / 12)) / (1000 * 60 * 60 * 24))
-            const hours =  Math.floor(diff % (1000 * 60 * 60 * 24) / (1000 * 60 * 60))
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000)
+                // Update the countdown every 1 second
+                var countdownFunction = setInterval(function() {
+                    var now = new Date().getTime();
+                    var timeRemaining = countdownDate - now;
 
-                document.querySelector(".seconds").innerHTML = seconds < 10 ? '0' + seconds : seconds
-                document.querySelector(".minutes").innerHTML = minutes < 10 ? '0' + minutes :minutes
-                document.querySelector(".hours").innerHTML = hours < 10 ? '0' + hours : hours
-                document.querySelector(".days").innerHTML = days < 10 ? '0' + days : days
-                document.querySelector(".months").innerHTML = month < 10 ? '0' + month : month
+                    if (timeRemaining >= 0) {
+                        var months = Math.floor(timeRemaining / (1000 * 60 * 60 * 24 * 30));
+                        var days = Math.floor((timeRemaining % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+                        var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
-            if(diff <= 0){
-            clearInterval(countdown)
-                    document.querySelector(".countdown").innerHTML = 'The deadline has passed, we look forward to seeing you all very soon!'
-            }
-
-            }, 1000)
+                        // Display the result
+                        $('#months').text(months);
+                        $('#days').text(days);
+                        $('#hours').text(hours);
+                        $('#minutes').text(minutes);
+                        $('#seconds').text(seconds);
+                    } else {
+                        clearInterval(countdownFunction);
+                        $('#countdown').text("The deadline has passed, we look forward to seeing you all very soon!");
+                    }
+                }, 1000);
         });
 
 

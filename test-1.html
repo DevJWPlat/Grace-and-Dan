@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #countdown {
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Countdown</h1>
+    <div id="countdown">
+        <span id="months"></span> months, 
+        <span id="days"></span> days, 
+        <span id="hours"></span> hours, 
+        <span id="minutes"></span> minutes, 
+        <span id="seconds"></span> seconds
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Set the date to countdown to
+            var countdownDate = new Date("2024-12-31T00:00:00").getTime();
+
+            // Update the countdown every 1 second
+            var countdownFunction = setInterval(function() {
+                var now = new Date().getTime();
+                var timeRemaining = countdownDate - now;
+
+                if (timeRemaining >= 0) {
+                    var months = Math.floor(timeRemaining / (1000 * 60 * 60 * 24 * 30));
+                    var days = Math.floor((timeRemaining % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+                    var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                    // Display the result
+                    $('#months').text(months);
+                    $('#days').text(days);
+                    $('#hours').text(hours);
+                    $('#minutes').text(minutes);
+                    $('#seconds').text(seconds);
+                } else {
+                    clearInterval(countdownFunction);
+                    $('#countdown').text("Countdown finished!");
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

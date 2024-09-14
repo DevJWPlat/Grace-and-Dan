@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Countdown</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Body and container styling */
+        body {
+            font-family: 'Georgia', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f7f0f5;
+            margin: 0;
+        }
+
+        #countdown-container {
+            text-align: center;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        /* Title styling */
+        h1 {
+            font-size: 2.5em;
+            color: #b15b85;
+            margin-bottom: 20px;
+        }
+
+        /* Countdown styling */
+        #countdown {
+            display: flex;
+            justify-content: space-around;
+            font-family: 'Arial', sans-serif;
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        /* Individual time box styling */
+        .time-box {
+            background-color: #f5e5ea;
+            padding: 15px;
+            border-radius: 10px;
+            width: 80px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 2em;
+            font-weight: bold;
+            color: #3e3e3e;
+        }
+
+        .time-label {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="countdown-container">
+        <h1>Our Wedding Countdown</h1>
+        <div id="countdown">
+            <div class="time-box">
+                <span id="months"></span>
+                <div class="time-label">Months</div>
+            </div>
+            <div class="time-box">
+                <span id="days"></span>
+                <div class="time-label">Days</div>
+            </div>
+            <div class="time-box">
+                <span id="hours"></span>
+                <div class="time-label">Hours</div>
+            </div>
+            <div class="time-box">
+                <span id="minutes"></span>
+                <div class="time-label">Minutes</div>
+            </div>
+            <div class="time-box">
+                <span id="seconds"></span>
+                <div class="time-label">Seconds</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Set the date to countdown to (e.g., wedding date)
+            var countdownDate = new Date("2025-06-15T16:00:00").getTime();
+
+            // Update the countdown every 1 second
+            var countdownFunction = setInterval(function() {
+                var now = new Date().getTime();
+                var timeRemaining = countdownDate - now;
+
+                if (timeRemaining >= 0) {
+                    var months = Math.floor(timeRemaining / (1000 * 60 * 60 * 24 * 30));
+                    var days = Math.floor((timeRemaining % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+                    var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                    // Display the result
+                    $('#months').text(months);
+                    $('#days').text(days);
+                    $('#hours').text(hours);
+                    $('#minutes').text(minutes);
+                    $('#seconds').text(seconds);
+                } else {
+                    clearInterval(countdownFunction);
+                    $('#countdown-container').html("<h2>Congratulations! The big day has arrived!</h2>");
+                }
+            }, 1000);
+        });
+    </script>
+
+</body>
+</html>
