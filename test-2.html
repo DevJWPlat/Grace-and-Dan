@@ -95,36 +95,7 @@
         </div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            // Set the date to countdown to (e.g., wedding date)
-            var countdownDate = new Date("2025-06-15T16:00:00").getTime();
-
-            // Update the countdown every 1 second
-            var countdownFunction = setInterval(function() {
-                var now = new Date().getTime();
-                var timeRemaining = countdownDate - now;
-
-                if (timeRemaining >= 0) {
-                    var months = Math.floor(timeRemaining / (1000 * 60 * 60 * 24 * 30));
-                    var days = Math.floor((timeRemaining % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
-                    var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-                    var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-                    // Display the result
-                    $('#months').text(months);
-                    $('#days').text(days);
-                    $('#hours').text(hours);
-                    $('#minutes').text(minutes);
-                    $('#seconds').text(seconds);
-                } else {
-                    clearInterval(countdownFunction);
-                    $('#countdown-container').html("<h2>Congratulations! The big day has arrived!</h2>");
-                }
-            }, 1000);
-        });
-    </script>
+    
 
 </body>
 </html>

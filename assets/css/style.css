@@ -757,12 +757,72 @@ div span:last-of-type {
     justify-content: flex-start;
     padding: 20px;
   }
-  div span:last-of-type {
-    font-size: 24px;
-    text-transform: uppercase;
-  }
   .number {
     font-size: 34px;
     padding-right: 30px;
+  }
+}
+#countdown-container {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/* Countdown styling */
+#countdown {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+/* Individual time box styling */
+.time-box {
+  background-color: #383838;
+  padding: 15px;
+  border-radius: 10px;
+  min-width: 100px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(202, 167, 140, 0.4);
+}
+
+.time-box span {
+  font-size: 22px !important;
+  color: #CAA78C;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+
+.time-label {
+  font-size: 16px;
+  color: #CAA78C;
+  font-family: "Montserrat", sans-serif;
+}
+
+@media screen and (max-width: 1200px) {
+  #countdown {
+    flex-direction: column;
+  }
+  .time-box {
+    width: 100px;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 1000px) {
+  #countdown {
+    flex-direction: row;
+  }
+  .time-box {
+    width: auto;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 600px) {
+  #countdown {
+    flex-direction: column;
+  }
+  .time-box {
+    width: 100%;
+    text-align: center;
   }
 }/*# sourceMappingURL=style.css.map */

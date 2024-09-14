@@ -145,28 +145,30 @@
             <p>Please submit your RSVP responses by July 31st 2025</p>
             <p>Please forward your responses to the wedding to the following email: <a href="mailto:Danandgracedepuis@hotmail.com">Danandgracedepuis@hotmail.com</a></p>
             <!-- insert countdown here -->
-            <div class="countdown" id="countdown">
-                <div>
-                  <span class="number months" id="months"></span>
-                  <span>Months</span>
+            <div id="countdown-container">
+                <div id="countdown">
+                    <div class="time-box">
+                        <span id="months"></span>
+                        <div class="time-label">Months</div>
+                    </div>
+                    <div class="time-box">
+                        <span id="days"></span>
+                        <div class="time-label">Days</div>
+                    </div>
+                    <div class="time-box">
+                        <span id="hours"></span>
+                        <div class="time-label">Hours</div>
+                    </div>
+                    <div class="time-box">
+                        <span id="minutes"></span>
+                        <div class="time-label">Minutes</div>
+                    </div>
+                    <div class="time-box">
+                        <span id="seconds"></span>
+                        <div class="time-label">Seconds</div>
+                    </div>
                 </div>
-                 <div>
-                  <span class="number days" id="days"></span>
-                  <span>Days</span>
-                </div>
-                 <div>
-                  <span class="number hours" id="hours"></span>
-                  <span>Hours</span>
-                </div>
-                 <div>
-                  <span class="number minutes" id="minutes"></span>
-                  <span>Minutes</span>
-                </div>
-                 <div>
-                  <span class="number seconds" id="seconds"></span>
-                  <span>Seconds</span>
-                </div>
-              </div>
+            </div>
             <a href="mailto:Danandgracedepuis@hotmail.com" class="main-btn">Email us</a>
         </div>
     </div>
@@ -316,36 +318,39 @@
                 $("body").toggleClass("is--active");
                 $(".mobile-menu-btn").toggleClass("open");
             })
-
-             // Set the date to countdown to
-             var countdownDate = new Date("2025-31-07T00:00:00").getTime();
-
-                // Update the countdown every 1 second
-                var countdownFunction = setInterval(function() {
-                    var now = new Date().getTime();
-                    var timeRemaining = countdownDate - now;
-
-                    if (timeRemaining >= 0) {
-                        var months = Math.floor(timeRemaining / (1000 * 60 * 60 * 24 * 30));
-                        var days = Math.floor((timeRemaining % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
-                        var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                        var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-                        var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-                        // Display the result
-                        $('#months').text(months);
-                        $('#days').text(days);
-                        $('#hours').text(hours);
-                        $('#minutes').text(minutes);
-                        $('#seconds').text(seconds);
-                    } else {
-                        clearInterval(countdownFunction);
-                        $('#countdown').text("The deadline has passed, we look forward to seeing you all very soon!");
-                    }
-                }, 1000);
         });
-
-
       </script>
+
+<script>
+    $(document).ready(function() {
+        // Set the date to countdown to (e.g., wedding date)
+        var countdownDate = new Date("2025-07-31T12:00:00").getTime(); // Correct date format
+
+        // Update the countdown every 1 second
+        var countdownFunction = setInterval(function() {
+            var now = new Date().getTime();
+            var timeRemaining = countdownDate - now;
+
+            if (timeRemaining >= 0) {
+                var months = Math.floor(timeRemaining / (1000 * 60 * 60 * 24 * 30));
+                var days = Math.floor((timeRemaining % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                // Display the result
+                $('#months').text(months);
+                $('#days').text(days);
+                $('#hours').text(hours);
+                $('#minutes').text(minutes);
+                $('#seconds').text(seconds);
+            } else {
+                clearInterval(countdownFunction);
+                $('#countdown-container').html("<p style='font-size: 20px; color: white; font-weight: 700; margin-top: 40px;'>The deadline has passed, we look forward to seeing you all very soon!</p>");
+            }
+        }, 1000);
+    });
+</script>
+
 </body>
 </html>
